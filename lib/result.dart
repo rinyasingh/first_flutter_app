@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
-
-  Result(this.resultScore);
+  final Function resultHandler;
+  Result(this.resultScore, this.resultHandler);
   String get resultPhrase {
     var resultText = 'Least basic ever. I\'m impressed!';
     if (resultScore == 12) {
@@ -21,14 +21,34 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext ctx) {
     return Center(
-      child: Text(
-        resultPhrase,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 30,
-          color: Colors.blueGrey,
+        child: Column(
+      children: <Widget>[
+        SizedBox(
+          width: double.infinity,
+          height: 100,
         ),
-      ),
-    );
+        Text(
+          resultPhrase,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+            color: Colors.blueGrey,
+          ),
+        ),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blueAccent,
+            ),
+            child: Text(
+              'Restart Quiz',
+              style: TextStyle(
+                backgroundColor: Colors.white,
+                color: Colors.blue,
+              ),
+            ),
+            onPressed: resultHandler),
+      ],
+    ));
   }
 }

@@ -17,17 +17,17 @@ class _MyAppState extends State<MyApp> {
       'questionText': 'What is your favourite colour?',
       'answers': [
         {'text': 'Red', 'score': 2},
-        {'text': 'Black', 'score': 4},
+        {'text': 'Black', 'score': 1},
         {'text': 'Purple', 'score': 3},
-        {'text': 'Blue', 'score': 3}
+        {'text': 'Blue', 'score': 4}
       ]
     },
     {
       'questionText': 'Favourite pet?',
       'answers': [
         {'text': 'Hamster', 'score': 2},
-        {'text;': 'Dog', 'score': 5},
-        {'text': 'Cat', 'score': 4},
+        {'text;': 'Dog', 'score': 4},
+        {'text': 'Cat', 'score': 3},
         {'text': 'Snake', 'score': 1}
       ]
     },
@@ -42,8 +42,17 @@ class _MyAppState extends State<MyApp> {
     }
   ];
   var _qIdx = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _resetQuiz() {
+    setState(() {
+      _qIdx = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _qIdx += 1;
     });
@@ -64,7 +73,7 @@ class _MyAppState extends State<MyApp> {
           ),
           body: _qIdx < _questions.length
               ? Quiz(_questions, _answerQuestion, _qIdx)
-              : Result()),
+              : Result(_totalScore, _resetQuiz)),
     );
   }
 }
