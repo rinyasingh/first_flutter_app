@@ -36,10 +36,7 @@ class Result extends StatelessWidget {
             color: Colors.blueGrey,
           ),
         ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blueAccent,
-            ),
+        TextButton(
             child: Text(
               'Restart Quiz',
               style: TextStyle(

@@ -10,11 +10,10 @@ class Answer extends StatelessWidget {
     return Container(
         width: double.infinity,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
-            textStyle: TextStyle(color: Colors.purple),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.blue),
           ),
-          child: Text(answerText),
+          child: Text(answerText, style: TextStyle(color: Colors.purple)),
           onPressed: selectHandler,
         ));
   }
